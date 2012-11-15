@@ -2,9 +2,6 @@
 <p>Find me in app/views/welcome/index.html.erb</p>
 </br>
 <%  @arrayTweet.each do |x| %>
-  <%=  x.user %>: <%=  x.content %>
-  <%if !x.url.nil?%>
-  	<a href="<%=  x.url %>">Clique aqui</a>
-  <% end if %>
+  <%=  x.user %>: <%=  x.content %>  <%if !x.url.nil?%> <a href="<%=  x.url %>" target="_blank">Clique aqui</a> <% end %>
 </br>
 <% end %>
