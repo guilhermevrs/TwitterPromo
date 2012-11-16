@@ -27,6 +27,17 @@ class PromoTweet
 		return @arrayTweet
 	end
 
+	def save(filePath)
+		if File.exists?(filePath)
+			io = File.open(filePath, "a+")
+		else
+			io = File.new(filePath, "a+")
+		end
+		
+		io.write(Marshal.dump(self))
+		
+	end
+
 	def persisted?
 		false
 	end
