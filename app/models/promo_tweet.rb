@@ -16,7 +16,7 @@ class PromoTweet
 		@arrayTweet = Array.new()
 	  	Twitter.search(query, :count => count).results.map do |status|
 	  	  @newPromoTweet = PromoTweet.new(:user => status.from_user, :content => status.text)
-	  	  if(!status.urls.nil?)
+	  	  if(!status.urls.nil? && status.urls.length > 0)
 	  	  	@newPromoTweet.url = status.urls[status.urls.length-1].expanded_url
 	  	  	status.urls.each do |ur|
 	  	  		@newPromoTweet.content = @newPromoTweet.content.gsub(ur.url, "")
