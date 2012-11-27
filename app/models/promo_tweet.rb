@@ -1,10 +1,7 @@
 #Defines a model to 
 class PromoTweet
-	include ActiveModel::Validations
-	include ActiveModel::Conversion
-	extend ActiveModel::Naming
 
-	attr_accessor :user, :name, :content, :url
+	attr_accessor :user, :name, :content, :url, :number
 
 	def initialize(attributes = {})
 		attributes.each do |name, value|
