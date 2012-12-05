@@ -2,6 +2,8 @@ class User < Record
 
 attr_accessor :name
 
+@array = []
+
 #methods
 
 #static methods
@@ -12,10 +14,9 @@ attr_accessor :name
 			attributes.each do |name, value|
 				o.send("#{name}=", value)
 			end
-			
 			return o
 		else
-			return @@array[usrAlready]
+			return @array[usrAlready]
 		end
 	end
 end

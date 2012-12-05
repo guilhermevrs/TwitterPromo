@@ -5,3 +5,12 @@
 </br>
   <%=  @tweets.inspect() %>
 </br>
+<h2>Let's see..</h2>
+<% if !@tweets.nil? %>
+	<% @tweets.each do |t| %>
+	 <%= User.find_by_parameter(:twitterID,t.userID).inspect %>
+	</br>
+	<% end %>
+<% else %>
+	<%=  @tree.dump() %>
+<% end %>

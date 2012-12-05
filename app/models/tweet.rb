@@ -1,6 +1,8 @@
 class Tweet < Record	
 
-attr_accessor :userID, :content
+attr_accessor :userID, :content, :username
+
+@array = []
 
 #methods
 
@@ -14,7 +16,7 @@ attr_accessor :userID, :content
 			end
 			return o
 		else
-			return @@array[usrAlready]
+			return @array[usrAlready]
 		end
 	end
 end

@@ -3,11 +3,15 @@ module BinarySerializer extend self
 		return Marshal.dump(object).length
 	end 
 
-	def append(filePath, object)
-		if File.exists?(filePath)
-			io = File.open(filePath, "a+")
+	def append(filePath, object, truncate=false)
+		if !truncate
+			if File.exists?(filePath)
+				io = File.open(filePath, "a+")
+			else
+				io = File.new(filePath, "a+")
+			end
 		else
-			io = File.new(filePath, "a+")
+			io = File.new(filePath, "w")
 		end
 		appendInFile(io,object)
 		io.close()
@@ -18,6 +22,17 @@ module BinarySerializer extend self
 		Marshal.dump(object, io)
 		#io.write(Marshal.dump(object).force_encoding("ISO-8859-1").encode("UTF-8"))
 		#io.flock(File::LOCK_UN)
+	end
+
+	def insert(filePath, object, index)
+		if File.exists?(filePath)
+			io = File.open(filePath, "r+")
+		else
+			io = File.new(filePath, "r+")
+		end
+		skip(io,index)
+		Marshal.dump(object, io)
+		io.close()
 	end
 
 	def readObject(filePath, index=0)
@@ -44,17 +59,6 @@ module BinarySerializer extend self
 		else
 			return nil
 		end
-	end
-
-	def insert(filePath, object, index)
-		if File.exists?(filePath)
-			io = File.open(filePath, "r+")
-		else
-			io = File.new(filePath, "r+")
-		end
-		skip(io,index)
-		Marshal.dump(object, io)
-		io.close()
 	end
 
 	def skip(io, index)
