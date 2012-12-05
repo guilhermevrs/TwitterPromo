@@ -1,7 +1,7 @@
 <h1>Welcome#index</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
 </br>
-<%  @arrayTweet.each do |x| %>
-  <%=  x.user %>: <%=  x.content %>  <%if !x.url.nil?%> <a href="<%=  x.url %>" target="_blank">Clique aqui <%=  x.number %></a> <% end %>
+  <%=  @users.inspect() %>
 </br>
-<% end %>
+  <%=  @tweets.inspect() %>
+</br>

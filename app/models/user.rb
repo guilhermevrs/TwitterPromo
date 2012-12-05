@@ -1,11 +1,21 @@
-class User < Record
-	attr_accessor :ID, :name
+class User < Record	
 
-	def save()
-		if !self.find_in_memory(:name,self.name).nil?
-			super
-			return true
+attr_accessor :name
+
+#methods
+
+#static methods
+	def self.factory(attributes = {})
+		usrAlready = find_by_twitterID(attributes[:TwitterID])
+		if usrAlready.nil?
+			o = User.new()
+			attributes.each do |name, value|
+				o.send("#{name}=", value)
+			end
+			
+			return o
+		else
+			return @@array[usrAlready]
 		end
-		return false
 	end
 end
