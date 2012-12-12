@@ -37,6 +37,10 @@ class Btree::Tree
     @root.value_of(key)
   end
 
+  def getKeys()
+    @root.keys
+  end
+
   # Support map like access
   alias_method :"[]", :value_of
 

@@ -1,0 +1,14 @@
+<% if @classAutores %>
+	<% @classAutores.each do |array| %>
+		<article>
+		<p class="autor-titulo"><%= array[0] %>:</p>
+		<% for i in 1..array.count-1 %>
+			<article class="search-result">
+				<span class="conteudo"><%= array[i].content %></span>
+			</article>
+		<% end %>
+		</article>
+	<% end %>
+<% else %>
+	<%= @test.inspect %>
+<% end %>

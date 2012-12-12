@@ -1,6 +1,17 @@
 class Tweet < Record	
 
-attr_accessor :userID, :content, :username
+attr_accessor :userID, :content, :username, :geo
+
+def hashtags
+	if @hashtags.nil?
+		@hashtags = []
+	end
+	@hashtags
+end
+
+def hashtags=(value)
+	@hashtags = value
+end
 
 @array = []
 
@@ -8,7 +19,7 @@ attr_accessor :userID, :content, :username
 
 #static methods
 	def self.factory(attributes = {})
-		usrAlready = find_by_twitterID(attributes[:TwitterID])
+		usrAlready = find_by_twitterID(attributes[:twitterID])
 		if usrAlready.nil?
 			o = Tweet.new()
 			attributes.each do |name, value|

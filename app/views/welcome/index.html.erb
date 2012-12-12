@@ -1,16 +1,37 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-</br>
-  <%=  @users.inspect() %>
-</br>
-  <%=  @tweets.inspect() %>
-</br>
-<h2>Let's see..</h2>
-<% if !@tweets.nil? %>
-	<% @tweets.each do |t| %>
-	 <%= User.find_by_parameter(:twitterID,t.userID).inspect %>
+<% if flash[:error] %>
+      <p class="error"><%= flash[:error] %></p>
+<% else %>
+	<% if flash[:notice] %>
+	  <p class="notice"><%= flash[:notice] %></p>
+	<% end %>
+<% end %>
+<p>Número de tweets indexados: <span class="estatistica"><%= @tTree.size %></span></p>
+<p>Número de usuarios indexados: <span class="estatistica"><%= @uTree.size %></span></p>
+<p>Número de hashtags indexados: <span class="estatistica"><%= @hTree.size %></span></p>
+
+<%= form_tag("/", :method => "get") do %>
+  <%= label_tag(:q, "Pesquisa:") %>
+  <%= text_field_tag(:q) %>
 	</br>
+  <%= label_tag(:load, "Fonte:", :class=>"espacamento-24") %>
+  <%= select_tag(:load, options_for_select([['Local', false], ['Twitter', true]]), :class => "height-30") %>
+  <%= label_tag(:search_method, "Método de pesquisa:") %>
+  <%= select_tag(:search_method, options_for_select([['Nenhum', 'n'],['Conteudo', 'c'], ['Hashtag', 'h'], ['Autor', 'a']]), :class => "height-30") %>
+  <%= submit_tag("Buscar") %>
+	<%= check_box_tag(:sort) %>
+	<%= label_tag(:sort, "Ordernar por mais novo") %>
+<% end %>
+
+<% if @tweets %>
+	<p class="results"> <span class="estatistica"><%= @tweets.size %></span> resultado(s) encontrado(s)</p>
+	<% @tweets.each do |t| %>
+		<% if !t.nil? %>
+			<article class="search-result">
+				<span class="autor"><%= t.username %>:</span>
+				<span class="conteudo"><%= t.content %></span>
+			</article>
+		<% end %>	
 	<% end %>
 <% else %>
-	<%=  @tree.dump() %>
-<% end %>
+	<p class="results"> <span class="estatistica">0</span> resultado(s) encontrado(s)</p>
+<% end %>	

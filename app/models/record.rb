@@ -1,6 +1,6 @@
 class Record
 
-	attr_accessor :twitterID
+	attr_accessor :twitterID, :indexFile
 
 	#methods
 	def save()

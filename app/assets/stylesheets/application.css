@@ -11,3 +11,45 @@
  *= require_self
  *= require_tree .
 */
+
+.title a {
+text-decoration: none !important;
+color: white !important;
+}
+
+.autor-titulo {
+    font-weight: bold;
+}
+
+.notice {
+    color: green;
+    font-weight: bold;
+}
+.estatistica {
+    font-weight: bold;
+}
+.search-result {
+    margin-bottom: 15px;
+    padding: 3px;
+    background: #FCE3B8;
+    -webkit-box-shadow: 0 5px 10px #AAA;  -moz-box-shadow: 0 5px 10px #aaa;  box-shadow: 0 5px 10px #AAA;
+}
+input[type="submit"] {
+    font-weight: normal;  font-size: 2em;  color: white;  margin: 0;  text-align: center;  text-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);  color: white;
+    background: #F16529;  display: block;  text-decoration: none;  margin-bottom: 20px; margin-top: -37px;
+    margin-left: 491px;
+}
+#q {
+    width: 530px;
+    height: 30px;
+    margin-bottom: 15px;
+}
+.espacamento-24{
+	margin-left:24px;
+}
+.height-30 {
+    height: 30px;
+}
+.autor {
+    font-weight: bold;
+}

@@ -1,5 +1,7 @@
 TwitterPromo::Application.routes.draw do
   get "welcome/index"
+  get "welcome/autores"
+  get "welcome/hashtags"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
